@@ -287,7 +287,7 @@ struct vm_area_struct {
 		struct {
 			struct rb_node rb;
 			unsigned long rb_subtree_last;
-		} linear;
+		};
 		const char __user *anon_name;
 	} shared;
 
