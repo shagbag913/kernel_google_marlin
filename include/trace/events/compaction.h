@@ -122,7 +122,7 @@ TRACE_EVENT(mm_compaction_begin,
 		__entry->sync = sync;
 	),
 
-	TP_printk("zone_start=%lu migrate_pfn=%lu free_pfn=%lu zone_end=%lu mode=%s",
+	TP_printk("zone_start=0x%lx migrate_pfn=0x%lx free_pfn=0x%lx zone_end=0x%lx mode=%s",
 		__entry->zone_start,
 		__entry->migrate_pfn,
 		__entry->free_pfn,
