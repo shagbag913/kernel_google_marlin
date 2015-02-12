@@ -1280,7 +1280,7 @@ int do_huge_pmd_numa_page(struct mm_struct *mm, struct vm_area_struct *vma,
 		if (!get_page_unless_zero(page))
 			goto out_unlock;
 		spin_unlock(ptl);
-		wait_migrate_huge_page(vma->anon_vma, pmdp);
+		wait_on_page_locked(page);
 		put_page(page);
 		goto out;
 	}
