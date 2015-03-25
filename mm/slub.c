@@ -2503,7 +2503,8 @@ redo:
 	do {
 		tid = this_cpu_read(s->cpu_slab->tid);
 		c = raw_cpu_ptr(s->cpu_slab);
-	} while (IS_ENABLED(CONFIG_PREEMPT) && unlikely(tid != c->tid));
+	} while (IS_ENABLED(CONFIG_PREEMPT) &&
+		 unlikely(tid != READ_ONCE(c->tid)));
 
 	/*
 	 * Irqless object alloc/free algorithm used here depends on sequence
@@ -2772,7 +2773,8 @@ redo:
 	do {
 		tid = this_cpu_read(s->cpu_slab->tid);
 		c = raw_cpu_ptr(s->cpu_slab);
-	} while (IS_ENABLED(CONFIG_PREEMPT) && unlikely(tid != c->tid));
+	} while (IS_ENABLED(CONFIG_PREEMPT) &&
+		 unlikely(tid != READ_ONCE(c->tid)));
 
 	/* Same with comment on barrier() in slab_alloc_node() */
 	barrier();
