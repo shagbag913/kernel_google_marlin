@@ -500,9 +500,9 @@ struct rcu_state {
 	/* End of fields guarded by barrier_mutex. */
 
 	unsigned long expedited_sequence;	/* Take a ticket. */
-	atomic_long_t expedited_workdone1;	/* # done by others #1. */
-	atomic_long_t expedited_workdone2;	/* # done by others #2. */
-	atomic_long_t expedited_workdone3;	/* # done by others #3. */
+	atomic_long_t exp_workdone1;	/* # done by others #1. */
+	atomic_long_t exp_workdone2;	/* # done by others #2. */
+	atomic_long_t exp_workdone3;	/* # done by others #3. */
 	atomic_long_t expedited_normal;		/* # fallbacks to normal. */
 	atomic_t expedited_need_qs;		/* # CPUs left to check in. */
 	struct swait_queue_head expedited_wq;	/* Wait for check-ins. */

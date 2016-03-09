@@ -3687,7 +3687,7 @@ static struct rcu_node *exp_funnel_lock(struct rcu_state *rsp, unsigned long s)
 	 * strictly needed for correctness.
 	 */
 	rdp = per_cpu_ptr(rsp->rda, raw_smp_processor_id());
-	if (sync_exp_work_done(rsp, NULL, NULL, &rsp->expedited_workdone1, s))
+	if (sync_exp_work_done(rsp, NULL, NULL, &rsp->exp_workdone1, s))
 		return NULL;
 	mutex_lock(&rdp->exp_funnel_mutex);
 	trace_rcu_exp_funnel_lock(rsp->name, rdp->mynode->level + 1,
@@ -3695,7 +3695,7 @@ static struct rcu_node *exp_funnel_lock(struct rcu_state *rsp, unsigned long s)
 	rnp0 = rdp->mynode;
 	for (; rnp0 != NULL; rnp0 = rnp0->parent) {
 		if (sync_exp_work_done(rsp, rnp1, rdp,
-				       &rsp->expedited_workdone2, s))
+				       &rsp->exp_workdone2, s))
 			return NULL;
 		mutex_lock(&rnp0->exp_funnel_mutex);
 		trace_rcu_exp_funnel_lock(rsp->name, rnp0->level,
@@ -3715,7 +3715,7 @@ static struct rcu_node *exp_funnel_lock(struct rcu_state *rsp, unsigned long s)
 		rnp1 = rnp0;
 	}
 	if (sync_exp_work_done(rsp, rnp1, rdp,
-			       &rsp->expedited_workdone3, s))
+			       &rsp->exp_workdone3, s))
 		return NULL;
 	return rnp1;
 }
