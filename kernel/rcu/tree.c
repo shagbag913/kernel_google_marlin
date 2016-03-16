@@ -3454,7 +3454,11 @@ static void rcu_exp_gp_seq_end(struct rcu_state *rsp)
 }
 static unsigned long rcu_exp_gp_seq_snap(struct rcu_state *rsp)
 {
-	return rcu_seq_snap(&rsp->expedited_sequence);
+	unsigned long s;
+
+	s = rcu_seq_snap(&rsp->expedited_sequence);
+	trace_rcu_exp_grace_period(rsp->name, s, TPS("snap"));
+	return s;
 }
 static bool rcu_exp_gp_seq_done(struct rcu_state *rsp, unsigned long s)
 {
@@ -3937,8 +3941,6 @@ void synchronize_sched_expedited(void)
 
 	/* Take a snapshot of the sequence number.  */
 	s = rcu_exp_gp_seq_snap(rsp);
-	trace_rcu_exp_grace_period(rsp->name, s, TPS("snap"));
-
 	if (exp_funnel_lock(rsp, s))
 		return;  /* Someone else did our work for us. */
 
