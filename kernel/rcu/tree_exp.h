@@ -572,7 +572,7 @@ static void _synchronize_rcu_expedited(struct rcu_state *rsp,
 	rnp = rcu_get_root(rsp);
 	wait_event(rnp->exp_wq[(s >> 1) & 0x3],
 		   sync_exp_work_done(rsp,
-				      &rdp->exp_workdone0, s));
+				      &rsp->exp_workdone0, s));
 
 	/* Let the next expedited grace period start. */
 	mutex_unlock(&rsp->exp_mutex);

@@ -336,6 +336,7 @@ void rcu_check_callbacks(int user);
 struct notifier_block;
 int rcu_cpu_notify(struct notifier_block *self,
 		   unsigned long action, void *hcpu);
+void rcu_cpu_starting(unsigned int cpu);
 
 #ifndef CONFIG_TINY_RCU
 void rcu_end_inkernel_boot(void);
