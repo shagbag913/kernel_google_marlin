@@ -398,6 +398,7 @@ struct rcu_data {
 #ifdef CONFIG_RCU_FAST_NO_HZ
 	struct rcu_head oom_head;
 #endif /* #ifdef CONFIG_RCU_FAST_NO_HZ */
+	int exp_dynticks_snap;		/* Double-check need for IPI. */
 
 	/* 7) Callback offloading. */
 #ifdef CONFIG_RCU_NOCB_CPU
