@@ -185,13 +185,12 @@ static int show_rcuexp(struct seq_file *m, void *v)
 {
 	struct rcu_state *rsp = (struct rcu_state *)m->private;
 
-	seq_printf(m, "s=%lu wd0=%lu wd1=%lu wd2=%lu wd3=%lu n=%lu enq=%d sc=%lu\n",
+	seq_printf(m, "s=%lu wd0=%lu wd1=%lu wd2=%lu wd3=%lu enq=%d sc=%lu\n",
 		   rsp->expedited_sequence,
 		   atomic_long_read(&rsp->exp_workdone0),
 		   atomic_long_read(&rsp->exp_workdone1),
 		   atomic_long_read(&rsp->exp_workdone2),
 		   atomic_long_read(&rsp->exp_workdone3),
-		   atomic_long_read(&rsp->expedited_normal),
 		   atomic_read(&rsp->expedited_need_qs),
 		   rsp->expedited_sequence / 2);
 	return 0;

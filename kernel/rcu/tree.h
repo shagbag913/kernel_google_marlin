@@ -515,11 +515,10 @@ struct rcu_state {
 	struct mutex exp_mutex;			/* Serialize expedited GP. */
 	struct mutex exp_wake_mutex;		/* Serialize wakeup. */
 	unsigned long expedited_sequence;	/* Take a ticket. */
-        atomic_long_t exp_workdone0;    /* # done by workqueue. */
-	atomic_long_t exp_workdone1;	/* # done by others #1. */
-	atomic_long_t exp_workdone2;	/* # done by others #2. */
-	atomic_long_t exp_workdone3;	/* # done by others #3. */
-	atomic_long_t expedited_normal;		/* # fallbacks to normal. */
+        atomic_long_t exp_workdone0;            /* # done by workqueue. */
+	atomic_long_t exp_workdone1;	        /* # done by others #1. */
+	atomic_long_t exp_workdone2;	        /* # done by others #2. */
+	atomic_long_t exp_workdone3;	        /* # done by others #3. */
 	atomic_t expedited_need_qs;		/* # CPUs left to check in. */
 	struct swait_queue_head expedited_wq;	/* Wait for check-ins. */
 	int ncpus_snap;				/* # CPUs seen last time. */
