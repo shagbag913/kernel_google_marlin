@@ -102,6 +102,7 @@ obj-$(CONFIG_REGULATOR_QPNP) += qpnp-regulator.o
 obj-$(CONFIG_REGULATOR_SPM) += spm-regulator.o
 obj-$(CONFIG_REGULATOR_CPR) += cpr-regulator.o
 obj-$(CONFIG_REGULATOR_CPR3) += cpr3-regulator.o cpr3-util.o
+CFLAGS_cpr3-regulator.o := $(call cc-disable-warning, maybe-uninitialized)
 obj-$(CONFIG_REGULATOR_CPR3_HMSS) += cpr3-hmss-regulator.o
 obj-$(CONFIG_REGULATOR_CPR3_MMSS) += cpr3-mmss-regulator.o
 obj-$(CONFIG_REGULATOR_CPR4_APSS) += cpr4-apss-regulator.o
