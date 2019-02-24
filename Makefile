@@ -388,7 +388,7 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -fno-strict-aliasing -fno-common \
 		   -Werror-implicit-function-declaration \
 		   -Wno-format-security \
-		   -std=gnu89
+		   -std=gnu89 -ffast-math
 
 ifeq ($(cc-name),clang)
 KBUILD_CFLAGS	+= -mcpu=kryo
