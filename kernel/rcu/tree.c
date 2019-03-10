@@ -3789,7 +3789,7 @@ retry_ipi:
 				raw_spin_lock_irqsave_rcu_node(rnp, flags);
 				if (cpu_online(cpu) &&
 				    (rnp->expmask & mask)) {
-					raw_spin_unlock_irq_rcu_node(rnp, flags);
+					raw_spin_unlock_irqrestore_rcu_node(rnp, flags);
 					schedule_timeout_uninterruptible(1);
 					if (cpu_online(cpu) &&
 					    (rnp->expmask & mask))
