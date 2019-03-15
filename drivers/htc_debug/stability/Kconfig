@@ -39,5 +39,6 @@ config HTC_DEBUG_BOOTLOADER_LOG
 	bool "HTC style ram console debug features"
 	default n
 	depends on PSTORE_CONSOLE
+        depends on HTC_DEBUG
 	help
 	  Say Y here if you want the HTC style ram console debug features
